@@ -1,4 +1,4 @@
-class_name C_Transform
+class_name C_Transform2D
 extends Component
 
 @export var position: Vector2
