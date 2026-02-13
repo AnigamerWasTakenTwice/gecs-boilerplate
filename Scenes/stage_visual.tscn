@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dfig8l2ff6lch"]
+
+[ext_resource type="Script" uid="uid://cdu5tlyk72uu4" path="res://addons/gecs/ecs/world.gd" id="1_5qke7"]
+[ext_resource type="Script" uid="uid://cgt45gdc3egpn" path="res://Scripts/stage_visual.gd" id="1_cg3hk"]
+[ext_resource type="PackedScene" uid="uid://cw4bpjnwhi4r2" path="res://ECS/Entities/entity_prefab/entity_prefab.tscn" id="2_cg3hk"]
+[ext_resource type="Script" uid="uid://80flthy06j60" path="res://ECS/Systems/s_rotate.gd" id="3_eugtu"]
+[ext_resource type="Script" uid="uid://dwkintfakl4nr" path="res://ECS/Observers/o_spritesync.gd" id="4_gig4l"]
+[ext_resource type="Script" uid="uid://b2k4bylbcq7c6" path="res://ECS/Observers/o_transformsync.gd" id="5_s702a"]
+
+[node name="stage_visual" type="Node2D" unique_id=967784500]
+script = ExtResource("1_cg3hk")
+
+[node name="World" type="Node" parent="." unique_id=1947253184]
+script = ExtResource("1_5qke7")
+entity_nodes_root = NodePath("../Entities")
+system_nodes_root = NodePath("../Systems")
+metadata/_custom_type_script = "uid://cdu5tlyk72uu4"
+
+[node name="Label" type="Label" parent="." unique_id=65720827]
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 424.0
+offset_bottom = 95.0
+text = "This is a stage set up visually. 
+Literally the only thing in the stage script is:
+'world.process(delta)'.
+Because that is the only thing you need when setting up things visually.
+
+Note: For the world to recognize the 'Entities' and 'Systems' nodes, you have to assign
+them in its properties."
+
+[node name="Systems" type="Node" parent="." unique_id=48236961]
+
+[node name="RotationSystem" type="Node" parent="Systems" unique_id=1928535671]
+script = ExtResource("3_eugtu")
+metadata/_custom_type_script = "uid://80flthy06j60"
+
+[node name="SpriteSyncObserver" type="Node" parent="Systems" unique_id=1941023531]
+script = ExtResource("4_gig4l")
+metadata/_custom_type_script = "uid://dwkintfakl4nr"
+
+[node name="TransformSyncObserver" type="Node" parent="Systems" unique_id=1446930746]
+script = ExtResource("5_s702a")
+metadata/_custom_type_script = "uid://b2k4bylbcq7c6"
+
+[node name="Entities" type="Node" parent="." unique_id=1888052224]
+
+[node name="Entity2D" parent="Entities" unique_id=2058735032 instance=ExtResource("2_cg3hk")]
+position = Vector2(658, 325)
+
+[node name="Entity2D2" parent="Entities" unique_id=1308764116 instance=ExtResource("2_cg3hk")]
+position = Vector2(172, 353)
+
+[node name="Entity2D3" parent="Entities" unique_id=513918677 instance=ExtResource("2_cg3hk")]
+position = Vector2(863, 284)

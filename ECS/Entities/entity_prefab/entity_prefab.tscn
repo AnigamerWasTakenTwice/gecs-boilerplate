@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cw4bpjnwhi4r2"]
+
+[ext_resource type="Script" uid="uid://c07auwqfx04db" path="res://ECS/Entities/entity_prefab/entity_prefab.gd" id="1_xhc4f"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="2_6k0pj"]
+[ext_resource type="Script" uid="uid://weabe5634880" path="res://ECS/Components/c_transform2d.gd" id="3_66jg7"]
+[ext_resource type="Script" uid="uid://dloslqephreb3" path="res://ECS/Components/c_sprite.gd" id="4_l121q"]
+[ext_resource type="Texture2D" uid="uid://cwd4xic3b0wsf" path="res://icon.svg" id="5_tvbir"]
+
+[sub_resource type="Resource" id="Resource_3b4sn"]
+script = ExtResource("3_66jg7")
+metadata/_custom_type_script = "uid://weabe5634880"
+
+[sub_resource type="Resource" id="Resource_2bdya"]
+script = ExtResource("4_l121q")
+sprite_ref = NodePath("Sprite2D")
+texture = ExtResource("5_tvbir")
+modulate = Color(0, 1, 1, 1)
+metadata/_custom_type_script = "uid://dloslqephreb3"
+
+[node name="Entity2D" type="Node2D" unique_id=2058735032]
+script = ExtResource("1_xhc4f")
+component_resources = Array[ExtResource("2_6k0pj")]([SubResource("Resource_3b4sn"), SubResource("Resource_2bdya")])
+
+[node name="Label" type="Label" parent="." unique_id=1523387610]
+offset_left = -62.0
+offset_top = -110.0
+offset_right = 75.0
+offset_bottom = -87.0
+text = "hi! i'm the prefab!"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1817082952]
