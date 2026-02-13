@@ -5,11 +5,12 @@
 # Each scene that uses ECS should usually have 3 things:
 # Not ECS Stuff(tm)
 # The World Node
-# and a script to set up the world node.
+# and a script to set up the world node if done programmatically.
 
 # This script programmatically sets up the world node.
 # Why? Because I think programmatically defined scenes and entities are cool.
-# But you don't have to! GECS provides ways to use the editor to set things up.
+# But you don't have to! GECS provides ways to use the editor to set things up. 
+# Check out "stage_visual.tscn" for info.
 
 extends Node2D
 
@@ -23,15 +24,15 @@ const ENTITIES = {
 
 
 func _ready() -> void:
+	# Waow! Systems! Add them to make them process your game!
+	world.add_system(RotationSystem.new())
 	# Observers are alternative systems that track specific components and run functions when they're changed.
 	# Good for things like UI that have to react to changes instead of make changes like Systems.
 	world.add_observer(SpriteSyncObserver.new())
 	world.add_observer(TransformSyncObserver.new())
 	
-	# Waow! Systems! Add them to make them process your game!
-	world.add_system(RotationSystem.new())
 	
-	# This is an entity being programmatically made, with Components being tied to them.
+	# This is an entity being programmatically made, with Components being tied to them through a manual array.
 	world.add_entity(ENTITIES.entity_2d.instantiate(), [
 		C_Transform2D.new(true, Vector2(30, 30)),
 		C_Sprite.new(load("res://icon.svg"), Color(1, 1, 1))

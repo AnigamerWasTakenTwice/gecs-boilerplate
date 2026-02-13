@@ -7,6 +7,8 @@ func watch() -> Resource:
 	return C_Sprite
 
 # These functions help sync the "Sprite" component with what's actually in the scene tree.
+# By default, this function will create a new sprite and initialize it with the component's properties.
+# But if a sprite has already been created on the entity and defined in sprite_ref, the Component will be configured to match the sprite.
 func on_component_added(entity: Entity, component: Resource) -> void:
 	var spr = component as C_Sprite
 	if spr.sprite_ref == NodePath():
@@ -17,18 +19,20 @@ func on_component_added(entity: Entity, component: Resource) -> void:
 		spr.sprite_ref = entity.get_path_to(spr_node)
 	else:
 		var spr_node = entity.get_node(spr.sprite_ref)
-		spr_node.texture = spr.texture
-		spr_node.modulate = spr.modulate
+		spr.texture = spr_node.texture
+		spr.modulate = spr_node.modulate
 
+# This just syncs the sprite node with the sprite component
 @warning_ignore("unused_parameter")
 func on_component_changed(
 	entity: Entity, component: Resource, property: String, new_value: Variant, old_value: Variant
 ) -> void:
 	var spr = component as C_Sprite
-	var spr_node = get_node(spr.sprite_ref)
+	var spr_node = entity.get_node(spr.sprite_ref)
 	spr_node.texture = spr.texture
 	spr_node.modulate = spr.modulate
 
+# This cleans up the sprite after the Sprite component is removed.
 @warning_ignore("unused_parameter")
 func on_component_removed(entity: Entity, component: Resource) -> void:
 	var spr = component as C_Sprite

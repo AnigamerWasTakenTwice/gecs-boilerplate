@@ -29,3 +29,5 @@ offset_bottom = -87.0
 text = "hi! i'm the prefab!"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1817082952]
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("5_tvbir")

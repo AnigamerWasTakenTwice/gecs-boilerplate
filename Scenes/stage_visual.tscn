@@ -24,7 +24,7 @@ offset_bottom = 95.0
 text = "This is a stage set up visually. 
 Literally the only thing in the stage script is:
 'world.process(delta)'.
-Because that is the only thing you need when setting up things visually.
+Because that is the only thing you need in the scene script when setting up things visually.
 
 Note: For the world to recognize the 'Entities' and 'Systems' nodes, you have to assign
 them in its properties."
@@ -50,6 +50,3 @@ position = Vector2(658, 325)
 
 [node name="Entity2D2" parent="Entities" unique_id=1308764116 instance=ExtResource("2_cg3hk")]
 position = Vector2(172, 353)
-
-[node name="Entity2D3" parent="Entities" unique_id=513918677 instance=ExtResource("2_cg3hk")]
-position = Vector2(863, 284)
